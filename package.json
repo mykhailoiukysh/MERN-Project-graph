@@ -1,0 +1,40 @@
+{
+  "name": "root",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "up": "mkdir -p data && docker-compose -f docker-compose.dev.yml up -d",
+    "postup": "wait-on data && npm run dev",
+    "dev": "lerna run --parallel dev",
+    "stop": "docker-compose -f docker-compose.dev.yml stop",
+    "down": "docker-compose -f docker-compose.dev.yml down && rm -rf data/*",
+    "commit": "git-cz",
+    "lint": "eslint '**/*.{js,ts,tsx}'",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "lerna run --parallel test"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.1.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "lerna": "^3.19.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.2",
+    "wait-on": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
